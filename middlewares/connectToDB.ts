@@ -16,7 +16,8 @@ export const connectToDB = (handler: NextApiHandler) =>
     }
 
     mongoose.connection.on('connected', () => console.log('Conectado ao banco de dados'));
-    mongoose.connection.on('error', error => console.log('Erro ao conectar no banco de dados:', error));
+        mongoose.connection.on('error', error => console.log('Erro ao conectar no banco de dados:', error));
+        mongoose.set("strictQuery", true);
     await mongoose.connect(DB_CONNECTION_STRING);
 
     return handler(req,res);
